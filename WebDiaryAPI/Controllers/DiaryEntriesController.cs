@@ -48,5 +48,44 @@ namespace WebDiaryAPI.Controllers
 
 			return Created("", diaryEntry);
 		}
+
+		// indicate that this action handles http put requests at
+		// the url pattern "api/diaryentries/{id}"
+		[HttpPut("{id}")]
+		public async Task<IActionResult> PutEntry(int id, [FromBody] DiaryEntry diaryEntry)
+		{
+			if (id != diaryEntry.Id)
+			{
+				return BadRequest();
+			}
+
+			_context.Entry(diaryEntry).State = EntityState.Modified;
+
+			try
+			{
+				await _context.SaveChangesAsync();
+			}
+			catch (DbUpdateConcurrencyException)
+			{		
+				if (!DiaryEntryExist(id))
+				{
+					return NotFound();
+				}
+				else
+				{
+					throw;
+				}
+			}
+			return NoContent();			
+		}
+
+		private bool DiaryEntryExist(int id)
+		{
+			return _context.DiaryEntries.Any(e => e.Id == id); // for each element e
+															   // check if the ID property of e
+															   // is equal to our ID that we are
+															   // passing.
+		}
+
 	}
 }

@@ -17,12 +17,14 @@ namespace WebDiaryAPI.Controllers
 			_context = context;
 		}
 
+		// CRUD -> R -> READ
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<DiaryEntry>>> GetEntries()
 		{
 			return await _context.DiaryEntries.ToListAsync();
 		}
 
+		// CRUD -> R -> READ BY ID
 		[HttpGet("{id}")]
 		public async Task<ActionResult<DiaryEntry>> GetById(int id)
 		{
@@ -35,6 +37,7 @@ namespace WebDiaryAPI.Controllers
 			return diaryEntry;
 		}
 
+		// CRUD -> C -> CREATE
 		[HttpPost]
 		public async Task<ActionResult<DiaryEntry>> PostEntry(DiaryEntry diaryEntry)
 		{
@@ -51,6 +54,8 @@ namespace WebDiaryAPI.Controllers
 
 		// indicate that this action handles http put requests at
 		// the url pattern "api/diaryentries/{id}"
+
+		// CRUD -> U -> UPDATE
 		[HttpPut("{id}")]
 		public async Task<IActionResult> PutEntry(int id, [FromBody] DiaryEntry diaryEntry)
 		{
@@ -78,6 +83,24 @@ namespace WebDiaryAPI.Controllers
 			}
 			return NoContent();			
 		}
+
+		// CRUD -> D -> DELETE
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteEntry(int id)
+		{
+			var diaryEntry = await _context.DiaryEntries.FindAsync(id);
+
+			if (diaryEntry == null)
+			{
+				return NotFound();
+			}
+			_context.DiaryEntries.Remove(diaryEntry);
+			await _context.SaveChangesAsync();
+
+			return NoContent();
+		}
+
+
 
 		private bool DiaryEntryExist(int id)
 		{

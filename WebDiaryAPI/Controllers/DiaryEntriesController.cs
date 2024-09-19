@@ -34,5 +34,19 @@ namespace WebDiaryAPI.Controllers
 			}
 			return diaryEntry;
 		}
+
+		[HttpPost]
+		public async Task<ActionResult<DiaryEntry>> PostEntry(DiaryEntry diaryEntry)
+		{
+			diaryEntry.Id = 0;
+
+			_context.DiaryEntries.Add(diaryEntry);
+
+			await _context.SaveChangesAsync();
+
+			var researceUrl = Url.Action(nameof(GetEntries), new {id = diaryEntry.Id});
+
+			return Created("", diaryEntry);
+		}
 	}
 }

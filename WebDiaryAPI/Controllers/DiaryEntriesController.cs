@@ -22,5 +22,16 @@ namespace WebDiaryAPI.Controllers
 		{
 			return await _context.DiaryEntries.ToListAsync();
 		}
+
+		[HttpGet("{id}")]
+		public ActionResult<DiaryEntry> GetById(int id)
+		{
+			var diaryEntry = _context.DiaryEntries.Find(id);
+			if (diaryEntry == null)
+			{
+				return NotFound();
+			}
+			return diaryEntry;
+		}
 	}
 }

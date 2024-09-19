@@ -70,7 +70,7 @@ O **Swagger** é um conjunto de ferramentas para projetar, construir, documentar
 
 ### Para completa fabricação do projeto os seguintes Tópicos foram estudados 
 # 📝 Aplicação dos Tópicos no Desenvolvimento do WebDiaryAPI
-1. **52. Restful API Intro** 📖  
+1. **Restful API Intro** 📖  
    Este tópico foi estudado para compreender os fundamentos de APIs RESTful. Foi essencial para estruturar a WebDiaryAPI de acordo com os princípios REST, definindo claramente os métodos HTTP (GET, POST, PUT, DELETE) para realizar operações de CRUD nas entradas do diário.
 
 2. **Understanding RESTful APIs** 📝  

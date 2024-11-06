@@ -2,7 +2,7 @@
 
 ## 📚 Visão Geral
 
-Este projeto é uma Web API chamada **WebDiaryAPI**, desenvolvida usando ASP.NET Core. A API permite aos usuários realizar operações CRUD em entradas de diário, possibilitando funcionalidades para criar, ler, atualizar e excluir entradas. A API também integra o Swagger para documentação e teste.
+Projeto Web API **WebDiaryAPI**, desenvolvido usando ASP.NET Core. A API permite aos usuários realizar operações CRUD em entradas de diário, possibilitando funcionalidades para criar, ler, atualizar e excluir entradas. A API também integra o Swagger para documentação e teste.
 
 ## 🗂 Estrutura do Projeto
 
